@@ -1,21 +1,38 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite App</title>
+  <link rel="stylesheet" href="./css/app.css">
 </head>
 
 <body>
-    <h1>Registro de usuario</h1>
+  <header>
+    <h1>Chat global Web Sockets</h1>
+  </header>
+  
+  <main id="messaging">
 
-    <form id="credentials">
-        <input type="text" placeholder="name" id="name">
-        <button type="submit">Enviar</button>
+    <form id="myForm" style="opacity: 25%;">
+      <input type="text" placeholder="message" id="text">
+      <button type="submit">Send</button>
     </form>
 
-    <script type="module" src="./js/credential.js"></script>
+    <div id="menssageList" style="opacity: 25%;"></div>
+
+    <div class="container">
+      <h2>Usuario</h2>
+      <form id="credentials">
+        <button type="submit">Enviar</button>
+        <input type="text" placeholder="name" id="name">
+      </form>
+    </div>
+  </main>
+
+  <script type="module" src="./js/index.js"></script>
 </body>
 
 </html>

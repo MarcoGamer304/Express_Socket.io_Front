@@ -1,12 +1,25 @@
 import { io } from 'socket.io-client'
-import { getUsername } from './credential';
+
 
 const socket = io.connect('https://expresssocketio-production-1926.up.railway.app/');
 const menssageList = document.getElementById('menssageList')
 const form = document.getElementById('myForm');
+const inputText = document.getElementById('text')
+const formCredentials = document.getElementById('credentials');
+inputText.disabled = true;
+let nameUser;
 
-const nameUser = getUsername();
-socket.emit('userRegister', nameUser);
+formCredentials.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const name = document.getElementById('name');
+    nameUser = name.value;
+
+    inputText.disabled = false;
+    socket.emit('userRegister', nameUser);
+
+    fixOpacity();
+});
 
 form.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -28,7 +41,7 @@ function createPElement(data) {
 
     const newDiv = document.createElement('div')
     newDiv.className = 'messageContainer';
-    
+
     const newUser = document.createElement('span')
     data.user === nameUser ? newUser.innerText = 'Me' : newUser.innerText = data.user;
     newUser.className = 'username';
@@ -45,11 +58,11 @@ function createPElement(data) {
     newDiv.appendChild(newMessage);
     newDiv.appendChild(spanInfo)
 
-    if(data.user === nameUser){
+    if (data.user === nameUser) {
         newDiv.style.alignSelf = 'flex-end'
         newDiv.style.backgroundColor = '#097fe7'
         newDiv.style.color = 'white'
-        newUser.style.alignSelf= 'flex-end'
+        newUser.style.alignSelf = 'flex-end'
         newMessage.style.alignSelf = 'flex-end'
         spanInfo.style.alignSelf = 'flex-end'
     }
@@ -57,4 +70,11 @@ function createPElement(data) {
 
     menssageList.scrollTop = menssageList.scrollHeight;
     console.log('Mensaje desde el servidor:', data);
+}
+
+function fixOpacity() {
+    formCredentials.style.opacity = '0%'
+    menssageList.style.opacity = '100%'
+    form.style.opacity = '100%'
+    menssageList.style.marginTop = '-50px'
 }
