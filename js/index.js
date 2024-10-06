@@ -1,7 +1,7 @@
 import { io } from 'socket.io-client'
 
 
-const socket = io.connect('https://expresssocketio-production-1926.up.railway.app/');
+const socket = io.connect('https://expresssocketio-production-211e.up.railway.app/');
 const menssageList = document.getElementById('menssageList')
 const form = document.getElementById('myForm');
 const inputText = document.getElementById('text')
